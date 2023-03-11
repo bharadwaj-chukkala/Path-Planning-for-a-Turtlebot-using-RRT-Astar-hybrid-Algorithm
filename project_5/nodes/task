@@ -1,0 +1,158 @@
+#!/usr/bin/env python3
+
+import rospy
+from RRT_Astar import *
+import pygame
+import math
+import time
+import numpy as np
+import tf
+from geometry_msgs.msg import Twist
+from tf.transformations import euler_from_quaternion
+import matplotlib
+import matplotlib.patches as patches
+import matplotlib.pyplot as plt
+import sys
+
+
+class Control_node(object):
+
+    def __init__(self):
+        self.vel_pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
+        self.listener_tf = tf.TransformListener()
+
+    def pause(self):
+        self.listener_tf.waitForTransform('/odom', '/base_footprint', rospy.Time(), rospy.Duration(500))
+
+
+    def cmd_vel(self, linear_velocity, angular_velocity):
+        vel_msg = Twist()
+        vel_msg.linear.x = linear_velocity
+        vel_msg.angular.z = angular_velocity
+        self.vel_pub.publish(vel_msg)
+
+    def transform_lookup(self):
+        (linear, angular) = self.listener_tf.lookupTransform('/odom', '/base_footprint', rospy.Time(0))
+        x, y, z = linear
+        roll, pitch, yaw = euler_from_quaternion(angular)
+        return x, y, yaw
+
+
+def main():
+    rospy.init_node('bchukkal_jkatak73')
+    rospy.loginfo('Press Ctrl + C to exit')
+
+    s_x = 0.5
+    s_y = 9.5
+    g_x = 9
+    g_y = 1
+    s_t = 30
+    robot_radius  = 0.038
+    clearance = input("\nEnter obstacle clearance for robot ")
+    clearance = float(clearance)
+  
+    RPM1 = 10
+    RPM2 = 10
+    timer_start = time.time()
+
+    c2g = dist((s_x,s_y), (g_x, g_y))
+    total_cost =  c2g
+    start_node = Node(s_x, s_y,-1,s_t,0,0,0,0,c2g,total_cost)
+    goal_node = Node(g_x, g_y, -1,0,0,0,0,c2g,0,total_cost)
+
+    flag,Node_List,Path_List = RRT_Astar(start_node, goal_node,RPM1,RPM2,robot_radius,clearance)
+                    
+    if (flag)==1:
+        x_path,y_path,theta_path,RPM_Left,RPM_Right = Backtrack(goal_node)
+    else:
+        print("Goal node not found")
+        exit(-1)
+
+    print('\n Path found sucessfully')
+    figure, axes = plt.subplots()
+    axes.set(xlim=(0, 10), ylim=(0, 10))
+
+    obstacle1 = patches.Rectangle((3, 2), 2, 2, color='blue')
+    obstacle2 = patches.Rectangle((1, 6), 4, 2, color='blue')
+    obstacle3 = patches.Rectangle((8, 3.5), 1, 3, color='blue')
+
+    axes.set_aspect('equal')
+    axes.add_patch(obstacle1)
+    axes.add_patch(obstacle2)
+    axes.add_patch(obstacle3)
+    
+    main_node()
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+                pygame.quit()
+
+    plt.plot(start_node.x, start_node.y, "Dw")
+    plt.plot(goal_node.x, goal_node.y, "Dg")
+    plt.plot(x_path, y_path, 'pink')
+    plt.show()
+    print('\n Waiting to publish cmd_vel msgs')
+
+    rospy.sleep(2)
+
+    print('\n publishing cmd_vel msgs')
+    control_node_object = Control_node()
+    control_node_object.pause()
+    rate = rospy.Rate(1)
+
+    r = 0.038 #in metres
+    L = 0.354 #in metres
+    #L = 0.16
+    dt = 10
+    pi = math.pi
+
+    print (len(x_path))
+    print (theta_path)
+
+    for i in range(len(x_path)):
+        UL = RPM_Left[i]
+        UR = RPM_Right[i]
+
+        theta = theta_path[i]
+
+        pi = math.pi
+
+        UL = UL*2*pi/60
+        UR = UR*2*pi/60
+
+        thetan = 3.14 * theta / 180
+
+        theta_dot = (r / L) * (UR - UL) 
+
+        velocity_value = (r / 2) * (UL + UR)
+        velocity_value = velocity_value*10
+
+        xn, yn, yaw = control_node_object.transform_lookup()
+        yaw = (yaw)*180/np.pi
+        print(theta)
+        print (yaw)
+
+        diff = ((theta - yaw) + 180) % 360 - 180
+
+        print("velocity value: ", velocity_value, "theta_dot: ", theta_dot, "diff: ", diff)
+        control_node_object.cmd_vel(velocity_value, theta_dot + 0.0045 * diff)
+        rate.sleep()
+        
+    
+
+    control_node_object.cmd_vel(0, 0)
+    print ('successfully reached')
+    
+
+
+if __name__ == '__main__':
+
+    matplotlib.use("TkAgg")
+    plt.ion()
+    try: main()
+    except rospy.ROSInterruptException:
+        rospy.loginfo("Node has been terminated")
+
+    

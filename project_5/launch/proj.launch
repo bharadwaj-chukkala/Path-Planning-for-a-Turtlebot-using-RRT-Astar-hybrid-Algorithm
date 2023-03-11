@@ -1,0 +1,28 @@
+<launch>
+  <arg name="world_name" default="$(find project_5)/world/barena.world" />
+  <arg name="robot_name" value="burger" />
+  <arg name="init_pose" value="-x -4.5 -y 4.5 -z 0" />
+
+  <!-- Launch gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)" />
+    <arg name="paused" value="false" />
+    <arg name="use_sim_time" value="true" />
+    <arg name="gui" value="true" />
+    <arg name="verbose" value="false" />
+    <arg name="debug" value="false" />
+    <arg name="output" value="screen" />
+  </include>
+
+  
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" /> 
+  
+  <!-- spawn the turtlebot -->
+  <node name="spawn_turtlebot" pkg="gazebo_ros" type="spawn_model" args="$(arg init_pose) -urdf -param robot_description -model $(arg robot_name)" respawn="false" output="screen" />
+  
+  <!-- start robot state publisher on tf-->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen" />
+
+  <node name="task_manager" pkg="project_5" type="task" output="screen" />
+
+</launch>
