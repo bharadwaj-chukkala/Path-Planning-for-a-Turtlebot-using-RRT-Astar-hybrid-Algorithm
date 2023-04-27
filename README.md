@@ -83,5 +83,5 @@ optimal by introducing the cost of the A Start algorithm into the RRT algorithm.
 
 |                  | RRT-Euclidean | RRT-Manhattan | Hybrid-RRT-Euclidean | Hybrid-RRT-Manhattan |
 | ---------------- | ------------- | ------------- | -------------------- | -------------------- |
-| Sparse Obstacles |               |               |                      |                      |
+| Sparse Obstacles |  <img width="230" height="150" src="https://github.com/bharadwaj-chukkala/Path-Planning-for-a-Turtlebot-using-RRT-Astar-hybrid-Algorithm/blob/main/outputs/output%20images/RRT_euclid_sparse.png">             |               |                      |                      |
 | Dense Obstacles  |               |               |                      |                      |
