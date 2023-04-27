@@ -88,4 +88,4 @@ optimal by introducing the cost of the A Start algorithm into the RRT algorithm.
 
 ### Turtlebot Simulation Video
 
-[![Watch the video](https://github.com/bharadwaj-chukkala/Path-Planning-for-a-Turtlebot-using-RRT-Astar-hybrid-Algorithm/blob/main/outputs/output%20images/video_result.png)](https://youtu.be/6UQQzT4o6Pc)
+[![Watch the video](https://img.youtube.com/vi/6UQQzT4o6Pc/maxresdefault.jpg)](https://youtu.be/6UQQzT4o6Pc)
