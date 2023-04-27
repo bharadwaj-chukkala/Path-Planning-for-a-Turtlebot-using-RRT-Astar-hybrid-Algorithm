@@ -87,5 +87,6 @@ optimal by introducing the cost of the A Start algorithm into the RRT algorithm.
 | Dense Obstacles  |      <img width="200" height="200" src="https://github.com/bharadwaj-chukkala/Path-Planning-for-a-Turtlebot-using-RRT-Astar-hybrid-Algorithm/blob/main/outputs/output%20images/RRT _euclid_dense.png">        |             <img width="200" height="200" src="https://github.com/bharadwaj-chukkala/Path-Planning-for-a-Turtlebot-using-RRT-Astar-hybrid-Algorithm/blob/main/outputs/output%20images/RRT_manhat_dense.png">    |            <img width="200" height="200" src="https://github.com/bharadwaj-chukkala/Path-Planning-for-a-Turtlebot-using-RRT-Astar-hybrid-Algorithm/blob/main/outputs/output%20images/RRT_heur_euclid_dense.png">          |           <img width="200" height="200" src="https://github.com/bharadwaj-chukkala/Path-Planning-for-a-Turtlebot-using-RRT-Astar-hybrid-Algorithm/blob/main/outputs/output%20images/RRT_heur_manhat_dense.png">         |
 
 ### Turtlebot Simulation Video
-
+<p align="center">
 [![Watch the video](https://img.youtube.com/vi/6UQQzT4o6Pc/hqdefault.jpg)](https://youtu.be/6UQQzT4o6Pc)
+</p>
