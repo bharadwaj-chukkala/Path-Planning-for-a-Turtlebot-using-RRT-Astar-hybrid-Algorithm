@@ -88,5 +88,6 @@ optimal by introducing the cost of the A Start algorithm into the RRT algorithm.
 
 ### Turtlebot Simulation Video
 <p align="center">
-[![Watch the video](https://img.youtube.com/vi/6UQQzT4o6Pc/hqdefault.jpg)](https://youtu.be/6UQQzT4o6Pc)
+<a href="https://youtu.be/6UQQzT4o6Pc"><img src="https://img.youtube.com/vi/6UQQzT4o6Pc/hqdefault.jpg"></a>
+
 </p>
