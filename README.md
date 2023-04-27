@@ -1,4 +1,3 @@
-
 # Path-Planning-for-a-Turtlebot-using-RRT-Astar-hybrid-Algorithm
 
 ## Introduction
@@ -82,7 +81,7 @@ optimal by introducing the cost of the A Start algorithm into the RRT algorithm.
 
 ## Results
 
-|                  | RRT | Hybrid-RRT-Euclidean | Hybrid-RRT-Manhattan |
-| ---------------- | --- | -------------------- | -------------------- |
-| Sparse Obstacles |     |                      |                      |
-| Dense Obstacles  |     |                      |                      |
+|                  | RRT-Euclidean | RRT-Manhattan | Hybrid-RRT-Euclidean | Hybrid-RRT-Manhattan |
+| ---------------- | ------------- | ------------- | -------------------- | -------------------- |
+| Sparse Obstacles |               |               |                      |                      |
+| Dense Obstacles  |               |               |                      |                      |
