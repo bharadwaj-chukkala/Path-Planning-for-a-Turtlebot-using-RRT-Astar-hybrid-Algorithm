@@ -7,7 +7,7 @@ optimal by introducing the cost of the A Start algorithm into the RRT algorithm.
 
 ---
 
-### Contents
+## Contents
 
 ```
 ├───output
@@ -19,7 +19,7 @@ optimal by introducing the cost of the A Start algorithm into the RRT algorithm.
 └───README.md
 ```
 
-### Pre Requisites
+## Pre Requisites
 
 * Ubuntu 18.04
 * ROS Melodic
@@ -28,7 +28,7 @@ optimal by introducing the cost of the A Start algorithm into the RRT algorithm.
 
 ---
 
-### Dependencies
+## Dependencies
 
 * numpy
 * matplotlib.patches
@@ -43,7 +43,7 @@ optimal by introducing the cost of the A Start algorithm into the RRT algorithm.
 
 ---
 
-### Installing Turtlebot Package
+## Installing Turtlebot Package
 
 **Paste the following commands line by line**
 
@@ -59,7 +59,7 @@ optimal by introducing the cost of the A Start algorithm into the RRT algorithm.
 
 ---
 
-### Running the package
+## Running the package
 
 * Clone this repository
 * `git clone`
@@ -91,3 +91,16 @@ optimal by introducing the cost of the A Start algorithm into the RRT algorithm.
 <a href="https://youtu.be/6UQQzT4o6Pc"><img src="https://img.youtube.com/vi/6UQQzT4o6Pc/hqdefault.jpg"></a>
 
 </p>
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+**Bharadwaj Chukkala**<br>
+UID: 118341705<br>
+Bharadwaj Chukkala is currently a Master's student in Robotics at the University of Maryland, College Park, MD (Batch of 2023). His interests include Machine Learning, Perception and Path Planning.<br>
+[![Contact](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](bchukkal@umd.edu)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/bharadwaj-chukkala/)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/bharadwaj-chukkala)
